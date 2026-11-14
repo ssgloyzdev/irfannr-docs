@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs | Irfan Nur (0xLoyz)</title>
+<meta name="description" content="Personal docs of Irfan Nur, also known as 0xLoyz or LoyzDev. Lazy, messy, and shipping anyway.">
+<link rel="canonical" href="https://docs.irfannr.my.id/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="docs.irfannr.my.id">
+<meta property="og:title" content="Irfan Nur | 0xLoyz">
+<meta property="og:description" content="Lazy, messy, and shipping anyway. Personal docs of Irfan Nur.">
+<meta property="og:url" content="https://docs.irfannr.my.id/">
+<meta property="og:image" content="https://docs.irfannr.my.id/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Irfan Nur, also known as 0xLoyz">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Irfan Nur | 0xLoyz">
+<meta name="twitter:description" content="Lazy, messy, and shipping anyway. Personal docs of Irfan Nur.">
+<meta name="twitter:image" content="https://docs.irfannr.my.id/og-image.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/icon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --ink: #111111;
+  --muted: #5f5f66;
+  --line: #e4e4e7;
+  --accent: #111111;
+  --accent-ink: #ffffff;
+  --code-bg: #f4f4f5;
+  --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --ink: #ededed;
+    --muted: #a1a1aa;
+    --line: #27272a;
+    --accent: #ededed;
+    --accent-ink: #0a0a0a;
+    --code-bg: #1c1c1e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --ink: #ededed;
+  --muted: #a1a1aa;
+  --line: #27272a;
+  --accent: #ededed;
+  --accent-ink: #0a0a0a;
+  --code-bg: #1c1c1e;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.65;
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: .5rem 1rem;
+  z-index: 20;
+}
+.skip:focus { left: 0; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -.01em;
+}
+.brand span { color: var(--accent); }
+.brand { display: inline-flex; align-items: center; gap: .6rem; }
+.brand img { width: 30px; height: 30px; display: block; }
+.theme-toggle {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: .4rem .8rem;
+  font: inherit;
+  font-size: .9rem;
+  cursor: pointer;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.sidebar {
+  position: sticky;
+  top: 3.6rem;
+  align-self: start;
+  max-height: calc(100vh - 3.6rem);
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem;
+  border-right: 1px solid var(--line);
+}
+.sidebar h2 {
+  margin: 0 0 .5rem;
+  font-size: .85rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.sidebar ul { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.sidebar a {
+  display: block;
+  padding: .3rem .6rem;
+  margin-left: -.6rem;
+  border-radius: 6px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: .95rem;
+}
+.sidebar a:hover { background: var(--code-bg); }
+.sidebar a[aria-current="true"] {
+  background: var(--code-bg);
+  color: var(--accent);
+  font-weight: 600;
+}
+main { padding: 2rem 2rem 4rem; max-width: 48rem; }
+h1 { font-size: 2.2rem; line-height: 1.2; margin: 0 0 .5rem; letter-spacing: -.02em; }
+h2.section { font-size: 1.45rem; margin: 3rem 0 .75rem; letter-spacing: -.01em; }
+p { margin: 0 0 1rem; }
+.lead { font-size: 1.15rem; color: var(--muted); margin-bottom: 1.5rem; }
+.notice {
+  border-left: 4px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 8px 8px 0;
+  padding: .9rem 1.1rem;
+  margin: 1.5rem 0;
+}
+.notice p { margin: 0; }
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: .9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+code {
+  font-family: var(--font-mono);
+  font-size: .9em;
+  background: var(--code-bg);
+  padding: .1em .35em;
+  border-radius: 4px;
+}
+pre code { background: none; padding: 0; }
+.table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+table { border-collapse: collapse; width: 100%; min-width: 30rem; }
+th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: .9rem; color: var(--muted); font-weight: 600; }
+.pager {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.pager a {
+  display: block;
+  padding: .7rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-decoration: none;
+  background: var(--surface);
+}
+footer {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 2.5rem;
+  color: var(--muted);
+  font-size: .9rem;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 800px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .sidebar {
+    position: static;
+    max-height: none;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 1rem 1.25rem;
+  }
+  .sidebar ul { display: flex; flex-wrap: wrap; gap: .25rem .5rem; margin-bottom: 1rem; }
+  .sidebar a { margin-left: 0; border: 1px solid var(--line); }
+  main { padding: 1.5rem 1.25rem 3rem; }
+  h1 { font-size: 1.8rem; }
+}
+@media (max-width: 640px) {
+  .table-wrap { overflow-x: visible; }
+  table, thead, tbody, th, td, tr { display: block; }
+  table { min-width: 0; }
+  thead { position: absolute; left: -9999px; }
+  tr {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: .75rem;
+    padding: .75rem .9rem;
+    background: var(--surface);
+  }
+  tr:last-child { margin-bottom: 0; }
+  td {
+    border: 0;
+    padding: .2rem 0;
+  }
+  td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: .7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: .1rem;
+  }
+  td:first-child {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: .35rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--line);
+  }
+}
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/icon.png" alt="" width="30" height="30">docs<span>.irfannr.my.id</span></a>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">Theme</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Site navigation">
+    <h2>Me</h2>
+    <ul>
+      <li><a href="#about" aria-current="true">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#stack">Stack</a></li>
+    </ul>
+    <h2>More</h2>
+    <ul>
+      <li><a href="#links">Links</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+  <main id="content">
+    <section id="about">
+      <h1>Irfan Nur</h1>
+      <p class="lead">Also known as 0xLoyz or LoyzDev. Lazy, messy, and somehow still shipping things.</p>
+      <p>This is my personal docs page. A small corner of the web where I keep track of who I am, what I build, and whatever I'm currently avoiding. No grand mission, just notes from someone who opens 40 tabs and finishes 3 of them.</p>
+      <p>Background in TJKT / Network Engineering, but I spend most of my time poking at web interfaces, automation scripts, and creative side projects that probably nobody asked for. I'm not organized. I don't pretend to be. My folders are a crime scene and I'm at peace with that.</p>
+      <p>I am lazy and I'm proud of it. Not in an aesthetic way, just in a "yes, I'll do it later, and I mean it" kind of way.</p>
+      <div class="notice">
+        <p>This page is under construction. Like most of my projects. Some of them have been "almost done" for months.</p>
+      </div>
+    </section>
+    <section id="projects">
+      <h2 class="section">Projects</h2>
+      <p>Things I've built or I'm currently messing with. Some are live, some are experiments, all of them started at 2 AM and half of them were abandoned by 3 AM.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Project</th><th>What it is</th><th>Status</th><th>Link</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>app.irfannr.my.id</td>
+              <td data-label="What it is">Web app, still growing.</td>
+              <td data-label="Status">Live</td>
+              <td data-label="Link"><a href="https://app.irfannr.my.id">Visit</a></td>
+            </tr>
+            <tr>
+              <td>api.irfannr.my.id</td>
+              <td data-label="What it is">API that powers the app and other stuff.</td>
+              <td data-label="Status">Live</td>
+              <td data-label="Link"><a href="https://api.irfannr.my.id">Visit</a></td>
+            </tr>
+            <tr>
+              <td>Apple Glass Profile UI</td>
+              <td data-label="What it is">Glassmorphic iOS-style profile interface with media player and interactive components.</td>
+              <td data-label="Status">Experiment</td>
+              <td data-label="Link"><a href="https://oxloyz-profile.vercel.app">In portfolio</a></td>
+            </tr>
+            <tr>
+              <td>Automation Helper Bot</td>
+              <td data-label="What it is">Modular script for daily task automation and webhook management.</td>
+              <td data-label="Status">Experiment</td>
+              <td data-label="Link">—</td>
+            </tr>
+            <tr>
+              <td>Terminal &amp; Rice Configs</td>
+              <td data-label="What it is">Neovim, Zsh, and terminal ecosystem configs for maximum productivity.</td>
+              <td data-label="Status">Ongoing</td>
+              <td data-label="Link">—</td>
+            </tr>
+            <tr>
+              <td>Network Checker Utility</td>
+              <td data-label="What it is">CLI diagnostic tool for latency monitoring and network analysis.</td>
+              <td data-label="Status">Experiment</td>
+              <td data-label="Link">—</td>
+            </tr>
+            <tr>
+              <td>LLMS Video Generator</td>
+              <td data-label="What it is">Prompt engineering tool for generating videos via JavaScript using Canvas and FFmpeg, straight from Termux.</td>
+              <td data-label="Status">Experiment</td>
+              <td data-label="Link">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Half of these are "ongoing" in the loosest possible sense. The other half are one bad day away from being deleted. That's fine.</p>
+    </section>
+    <section id="stack">
+      <h2 class="section">Stack</h2>
+      <p>Tools and areas I actually use, not just things I put on a resume. Some of them I use properly, most of them I use while half-awake.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Area</th><th>Tools</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Web</td>
+              <td data-label="Tools">HTML, JavaScript, Node.js</td>
+            </tr>
+            <tr>
+              <td>Scripting</td>
+              <td data-label="Tools">Python, Bash</td>
+            </tr>
+            <tr>
+              <td>Environment</td>
+              <td data-label="Tools">Neovim, Zsh, Termux, Dotfiles</td>
+            </tr>
+            <tr>
+              <td>Networking</td>
+              <td data-label="Tools">TJKT / Network Engineering background</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="links">
+      <h2 class="section">Links</h2>
+      <p>Where to find me and what I'm up to. I reply eventually. Probably.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Label</th><th>URL</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Profile &amp; Portfolio</td>
+              <td data-label="URL"><a href="https://oxloyz-profile.vercel.app">oxloyz-profile.vercel.app</a></td>
+            </tr>
+            <tr>
+              <td>App</td>
+              <td data-label="URL"><a href="https://app.irfannr.my.id">app.irfannr.my.id</a></td>
+            </tr>
+            <tr>
+              <td>API</td>
+              <td data-label="URL"><a href="https://api.irfannr.my.id">api.irfannr.my.id</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="faq">
+      <h2 class="section">FAQ</h2>
+      <p><strong>Who are you?</strong><br>Irfan. Or Irfan Nur. Online I go by 0xLoyz or LoyzDev.</p>
+      <p><strong>What do you do?</strong><br>Mostly web interfaces, automation, and random experiments. Occasionally networking stuff. Mostly scrolling.</p>
+      <p><strong>Are you available for collaboration?</strong><br>Depends on the idea and my mood. Send it over and we'll see. Fair warning: I'm slow.</p>
+      <p><strong>Why is your stuff so messy?</strong><br>Because I'm lazy. That's the whole answer. I'm not hiding it.</p>
+      <p><strong>Are you going to finish your projects?</strong><br>Statistically, some of them. Not all. I've made peace with it.</p>
+      <p><strong>Where can I see more?</strong><br>My profile page has the full picture: <a href="https://oxloyz-profile.vercel.app">oxloyz-profile.vercel.app</a>.</p>
+    </section>
+    <div class="pager">
+      <a href="#top">↑ Back to top</a>
+    </div>
+  </main>
+</div>
+<footer>
+  <p>&copy; <span id="year">2026</span> irfannr.my.id. Built slowly, on purpose.</p>
+</footer>
+<script>
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("themeToggle");
+  var saved = null;
+  try { saved = localStorage.getItem("theme"); } catch (e) {}
+  if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+  toggle.addEventListener("click", function () {
+    var current = root.getAttribute("data-theme");
+    if (!current) {
+      current = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    var next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+  document.getElementById("year").textContent = new Date().getFullYear();
+  var links = document.querySelectorAll(".sidebar a");
+  var map = {};
+  links.forEach(function (link) { map[link.getAttribute("href").slice(1)] = link; });
+  if ("IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && map[entry.target.id]) {
+          links.forEach(function (l) { l.removeAttribute("aria-current"); });
+          map[entry.target.id].setAttribute("aria-current", "true");
+        }
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    document.querySelectorAll("main section[id]").forEach(function (s) { observer.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
